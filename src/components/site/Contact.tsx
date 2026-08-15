@@ -98,9 +98,12 @@ export function Contact() {
         <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:px-6 md:grid-cols-3">
           <div>
             <div className="flex items-center gap-3">
-              <span className="grid size-10 place-items-center rounded-xl bg-primary font-display text-lg font-bold text-primary-foreground">
-                ST
-              </span>
+              <img
+                src={logoAsset.url}
+                alt={`${CLINIC.name} logosu`}
+                className="size-10 object-contain"
+              />
+
               <span>
                 <span className="block font-display text-base font-semibold text-primary">
                   {CLINIC.name}
