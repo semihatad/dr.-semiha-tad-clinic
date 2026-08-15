@@ -1,9 +1,9 @@
-import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Clock, MessageCircle, Instagram } from "lucide-react";
 import { CLINIC, NAV_ITEMS } from "@/lib/clinic";
 import { Reveal, SectionHeading } from "./Section";
 import { useOpenStatus } from "./hooks";
 import { cn } from "@/lib/utils";
-import logoAsset from "@/assets/logo.png.asset.json";
+import logo from "@/assets/logo.png";
 
 
 export function Contact() {
@@ -20,15 +20,23 @@ export function Contact() {
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           <Reveal className="space-y-4">
-            <div className="flex gap-4 rounded-2xl border border-border p-6">
+            <a
+              href={CLINIC.googleBusiness}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex gap-4 rounded-2xl border border-border p-6 hover:bg-navy-50/50 transition-colors"
+            >
               <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-navy-50 text-primary">
                 <MapPin className="size-5" />
               </span>
               <div className="min-w-0">
                 <h3 className="font-display text-sm font-semibold text-primary">Adres</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{CLINIC.address}</p>
+                <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-accent hover:text-accent-hover">
+                  Google Haritalar'da Göster →
+                </span>
               </div>
-            </div>
+            </a>
 
             <div className="flex gap-4 rounded-2xl border border-border p-6">
               <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-navy-50 text-primary">
@@ -101,7 +109,7 @@ export function Contact() {
           <div>
             <div className="flex items-center gap-3">
               <img
-                src={logoAsset.url}
+                src={logo}
                 alt={`${CLINIC.name} logosu`}
                 className="size-10 object-contain"
               />
@@ -116,6 +124,28 @@ export function Contact() {
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
               Çankaya / Ankara'da modern ve hijyenik diş hekimliği hizmetleri.
             </p>
+            <div className="mt-5 flex items-center gap-3">
+              <a
+                href={CLINIC.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex size-9 items-center justify-center rounded-xl border border-border text-muted-foreground hover:border-primary hover:text-primary hover:-translate-y-0.5 transition-all"
+                aria-label="Instagram"
+              >
+                <Instagram className="size-4" />
+              </a>
+              <a
+                href={CLINIC.googleBusiness}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex size-9 items-center justify-center rounded-xl border border-border text-muted-foreground hover:border-primary hover:text-primary hover:-translate-y-0.5 transition-all"
+                aria-label="Google Business"
+              >
+                <svg className="size-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114-3.51 0-6.377-2.87-6.377-6.38s2.867-6.38 6.377-6.38c1.5 0 2.915.545 4.025 1.545l3.078-3.078C19.043 2.146 15.772 1 12.24 1 6.033 1 1 6.033 1 12.24s5.033 11.24 11.24 11.24c5.84 0 10.963-4.148 10.963-11.24 0-.746-.073-1.4-.2-1.955H12.24z"/>
+                </svg>
+              </a>
+            </div>
           </div>
 
           <div>

@@ -2,12 +2,36 @@ import { Star, Quote } from "lucide-react";
 import { Reveal, SectionHeading } from "./Section";
 
 const REVIEWS = [
-  { name: "Ayşe K.", treatment: "Dolgu Tedavisi", text: "Çok ilgili ve güler yüzlü bir hekim. İşlem sırasında hiç acı hissetmedim, klinik tertemiz." },
-  { name: "Mehmet Y.", treatment: "İmplant", text: "Süreç boyunca her aşamayı detaylıca anlattı. Sonuçtan çok memnunum, gönül rahatlığıyla tavsiye ederim." },
-  { name: "Zeynep A.", treatment: "Diş Beyazlatma", text: "Randevu almak çok kolaydı, akşam saatlerinde de açık olması iş çıkışı için harika." },
-  { name: "Burak D.", treatment: "Kanal Tedavisi", text: "Diş hekimi korkum vardı, burada tamamen geçti. Sakin ve güven veren bir yaklaşım." },
-  { name: "Elif S.", treatment: "Ortodonti", text: "Şeffaf plak tedavisi süreci planlandığı gibi ilerledi. Sonuç beklediğimden de iyi oldu." },
-  { name: "Canan T.", treatment: "Çocuk Diş Hekimliği", text: "Kızım hiç korkmadan tedavisini oldu. Çocuklarla iletişimi gerçekten çok iyi." },
+  {
+    name: "Ramazan Ceviz",
+    treatment: "Diş Tedavisi",
+    text: "Klinik çok temiz ve düzenli. Doktor ve çalışanlar çok ilgiliydi. Diş tedavim sırasında hiç ağrı hissetmedim. Gönül rahatlığıyla tavsiye ederim. Bünyamin Turhan hocama özellikle çok teşekkür ederim 🙂",
+  },
+  {
+    name: "Derya Yıldız",
+    treatment: "Köprü Tedavisi",
+    text: "Semiha Hanım'a yıllar önce dişlerime köprü yaptırmıştım. Uzun yıllar kullandım, herhangi bir sorunla karşılaşmadım. Ablam sürekli ona gider, o da çok memnun.",
+  },
+  {
+    name: "Murat Ateş",
+    treatment: "Kaplama & Kanal Tedavisi",
+    text: "3 adet kaplama yaptırdım, harika şu anda. Kaplama ve kanal tedavisi işlemlerinde gerçekten başarılılar, elinize sağlık.",
+  },
+  {
+    name: "Emel Bıçakçı",
+    treatment: "Gülüş Tasarımı",
+    text: "Kendimi en iyi ve güvenilir ellerde hissettiğim en güzel klinik. Doktorlarım güler yüzlü ve işinin ehli. Şu an gülüşümü onlara borçluyum diyebilirim. Emeği geçen tüm hocalarıma teşekkür ederim, herkese tavsiye ederim. ❤️",
+  },
+  {
+    name: "Nimet Telli Demirhan",
+    treatment: "Genel Diş Hekimliği",
+    text: "Sevgili arkadaşlar, doktor Semiha Tad hanımefendi gerçekten yüreği, kalbi kadar eli de hünerli biridir. Çok güzel diş yapıyor, ben kimi tavsiye ettiysem çok memnun kaldı. Özünde çok iyi bir insan, fiyatları da çok uygundur.",
+  },
+  {
+    name: "Serdar Elmas",
+    treatment: "Çocuk Diş Hekimliği",
+    text: "6 yaşındaki kızımı dolgu ve diş çekimi için götürdüm. Hocanın yaklaşımı çok iyiydi, Cebeci bölgesinde en iyisi diyebilirim.",
+  },
 ];
 
 export function Testimonials() {

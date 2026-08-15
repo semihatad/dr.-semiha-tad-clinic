@@ -4,7 +4,7 @@ import { Menu, X, MessageCircle } from "lucide-react";
 import { CLINIC, NAV_ITEMS } from "@/lib/clinic";
 import { useScrollSpy } from "./hooks";
 import { cn } from "@/lib/utils";
-import logoAsset from "@/assets/logo.png.asset.json";
+import logo from "@/assets/logo.png";
 
 
 const IDS = NAV_ITEMS.map((n) => n.id);
@@ -31,7 +31,7 @@ export function Navbar() {
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 sm:px-6 lg:grid-cols-[auto_1fr_auto]">
         <a href="#hero" className="flex min-w-0 items-center gap-3">
           <img
-            src={logoAsset.url}
+            src={logo}
             alt={`${CLINIC.name} logosu`}
             className="size-10 shrink-0 object-contain"
           />
