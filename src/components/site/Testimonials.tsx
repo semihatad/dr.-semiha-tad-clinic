@@ -2,12 +2,36 @@ import { Star, Quote } from "lucide-react";
 import { Reveal, SectionHeading } from "./Section";
 
 const REVIEWS = [
-  { name: "Ayşe K.", treatment: "Dolgu Tedavisi", text: "Çok ilgili ve güler yüzlü bir hekim. İşlem sırasında hiç acı hissetmedim, klinik tertemiz." },
-  { name: "Mehmet Y.", treatment: "İmplant", text: "Süreç boyunca her aşamayı detaylıca anlattı. Sonuçtan çok memnunum, gönül rahatlığıyla tavsiye ederim." },
-  { name: "Zeynep A.", treatment: "Diş Beyazlatma", text: "Randevu almak çok kolaydı, akşam saatlerinde de açık olması iş çıkışı için harika." },
-  { name: "Burak D.", treatment: "Kanal Tedavisi", text: "Diş hekimi korkum vardı, burada tamamen geçti. Sakin ve güven veren bir yaklaşım." },
-  { name: "Elif S.", treatment: "Ortodonti", text: "Şeffaf plak tedavisi süreci planlandığı gibi ilerledi. Sonuç beklediğimden de iyi oldu." },
-  { name: "Canan T.", treatment: "Çocuk Diş Hekimliği", text: "Kızım hiç korkmadan tedavisini oldu. Çocuklarla iletişimi gerçekten çok iyi." },
+  {
+    name: "Ayşe K.",
+    treatment: "Dolgu Tedavisi",
+    text: "Çok ilgili ve güler yüzlü bir hekim. İşlem sırasında hiç acı hissetmedim, klinik tertemiz.",
+  },
+  {
+    name: "Mehmet Y.",
+    treatment: "İmplant",
+    text: "Süreç boyunca her aşamayı detaylıca anlattı. Sonuçtan çok memnunum, gönül rahatlığıyla tavsiye ederim.",
+  },
+  {
+    name: "Zeynep A.",
+    treatment: "Diş Beyazlatma",
+    text: "Randevu almak çok kolaydı, akşam saatlerinde de açık olması iş çıkışı için harika.",
+  },
+  {
+    name: "Burak D.",
+    treatment: "Kanal Tedavisi",
+    text: "Diş hekimi korkum vardı, burada tamamen geçti. Sakin ve güven veren bir yaklaşım.",
+  },
+  {
+    name: "Elif S.",
+    treatment: "Ortodonti",
+    text: "Şeffaf plak tedavisi süreci planlandığı gibi ilerledi. Sonuç beklediğimden de iyi oldu.",
+  },
+  {
+    name: "Canan T.",
+    treatment: "Çocuk Diş Hekimliği",
+    text: "Kızım hiç korkmadan tedavisini oldu. Çocuklarla iletişimi gerçekten çok iyi.",
+  },
 ];
 
 export function Testimonials() {

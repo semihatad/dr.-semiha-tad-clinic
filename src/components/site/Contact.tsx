@@ -5,7 +5,6 @@ import { useOpenStatus } from "./hooks";
 import { cn } from "@/lib/utils";
 import logoAsset from "@/assets/logo.png.asset.json";
 
-
 export function Contact() {
   const status = useOpenStatus();
 
@@ -50,7 +49,9 @@ export function Contact() {
                 <Clock className="size-5" />
               </span>
               <div className="min-w-0">
-                <h3 className="font-display text-sm font-semibold text-primary">Çalışma Saatleri</h3>
+                <h3 className="font-display text-sm font-semibold text-primary">
+                  Çalışma Saatleri
+                </h3>
                 <p className="mt-1 text-sm text-muted-foreground">{CLINIC.hours}</p>
                 {status && (
                   <span

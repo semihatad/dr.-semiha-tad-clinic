@@ -12,14 +12,46 @@ import { Reveal, SectionHeading } from "./Section";
 import { CLINIC } from "@/lib/clinic";
 
 const SERVICES = [
-  { icon: Stethoscope, title: "Genel Diş Muayenesi", text: "Detaylı ağız-diş kontrolü ve kişiye özel tedavi planlaması." },
-  { icon: ShieldPlus, title: "Dolgu Tedavisi", text: "Estetik kompozit dolgular ile doğal görünüm ve dayanıklılık." },
-  { icon: Syringe, title: "Kanal Tedavisi", text: "Ağrısız, tek seansta tamamlanabilen modern kanal tedavisi." },
-  { icon: Sparkles, title: "Diş Beyazlatma", text: "Klinik tipi beyazlatma ile birkaç ton daha aydınlık gülüş." },
-  { icon: Smile, title: "Protez ve Kaplama", text: "Zirkonyum ve porselen kaplamalarla fonksiyon ve estetik." },
-  { icon: Bone, title: "İmplant Uygulaması", text: "Eksik dişler için kalıcı ve konforlu implant çözümleri." },
-  { icon: Braces, title: "Ortodonti", text: "Tel ve şeffaf plak tedavileri ile düzgün diş dizilimi." },
-  { icon: Baby, title: "Çocuk Diş Hekimliği", text: "Çocuklar için korkusuz, oyunlaştırılmış tedavi yaklaşımı." },
+  {
+    icon: Stethoscope,
+    title: "Genel Diş Muayenesi",
+    text: "Detaylı ağız-diş kontrolü ve kişiye özel tedavi planlaması.",
+  },
+  {
+    icon: ShieldPlus,
+    title: "Dolgu Tedavisi",
+    text: "Estetik kompozit dolgular ile doğal görünüm ve dayanıklılık.",
+  },
+  {
+    icon: Syringe,
+    title: "Kanal Tedavisi",
+    text: "Ağrısız, tek seansta tamamlanabilen modern kanal tedavisi.",
+  },
+  {
+    icon: Sparkles,
+    title: "Diş Beyazlatma",
+    text: "Klinik tipi beyazlatma ile birkaç ton daha aydınlık gülüş.",
+  },
+  {
+    icon: Smile,
+    title: "Protez ve Kaplama",
+    text: "Zirkonyum ve porselen kaplamalarla fonksiyon ve estetik.",
+  },
+  {
+    icon: Bone,
+    title: "İmplant Uygulaması",
+    text: "Eksik dişler için kalıcı ve konforlu implant çözümleri.",
+  },
+  {
+    icon: Braces,
+    title: "Ortodonti",
+    text: "Tel ve şeffaf plak tedavileri ile düzgün diş dizilimi.",
+  },
+  {
+    icon: Baby,
+    title: "Çocuk Diş Hekimliği",
+    text: "Çocuklar için korkusuz, oyunlaştırılmış tedavi yaklaşımı.",
+  },
 ];
 
 export function Services() {
@@ -39,7 +71,9 @@ export function Services() {
                 <span className="grid size-11 place-items-center rounded-xl bg-navy-50 text-primary transition-colors group-hover:bg-accent/15">
                   <s.icon className="size-5" />
                 </span>
-                <h3 className="mt-5 font-display text-base font-semibold text-primary">{s.title}</h3>
+                <h3 className="mt-5 font-display text-base font-semibold text-primary">
+                  {s.title}
+                </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
               </article>
             </Reveal>

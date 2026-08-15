@@ -13,9 +13,21 @@ const STATS = [
 ];
 
 const VALUES = [
-  { icon: ShieldCheck, title: "Steril ve Güvenli", text: "Tüm ekipmanlar her hasta öncesi eksiksiz sterilize edilir." },
-  { icon: HeartHandshake, title: "Hasta Odaklı", text: "Tedavi planı, beklentileriniz ve bütçeniz birlikte belirlenir." },
-  { icon: Sparkles, title: "Modern Teknoloji", text: "Dijital görüntüleme ve güncel tedavi protokolleri." },
+  {
+    icon: ShieldCheck,
+    title: "Steril ve Güvenli",
+    text: "Tüm ekipmanlar her hasta öncesi eksiksiz sterilize edilir.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Hasta Odaklı",
+    text: "Tedavi planı, beklentileriniz ve bütçeniz birlikte belirlenir.",
+  },
+  {
+    icon: Sparkles,
+    title: "Modern Teknoloji",
+    text: "Dijital görüntüleme ve güncel tedavi protokolleri.",
+  },
 ];
 
 function CountUp({ value, suffix }: { value: number; suffix?: string }) {
@@ -65,7 +77,9 @@ export function About() {
                       <v.icon className="size-5" />
                     </span>
                     <div className="min-w-0">
-                      <h3 className="font-display text-base font-semibold text-primary">{v.title}</h3>
+                      <h3 className="font-display text-base font-semibold text-primary">
+                        {v.title}
+                      </h3>
                       <p className="mt-1 text-sm text-muted-foreground">{v.text}</p>
                     </div>
                   </div>

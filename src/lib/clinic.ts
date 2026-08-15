@@ -3,7 +3,8 @@ export const CLINIC = {
   title: "Diş Hekimi",
   phone: "(0312) 319 01 00",
   phoneHref: "tel:+903123190100",
-  whatsapp: "https://wa.me/903123190100?text=" + encodeURIComponent("Merhaba, randevu almak istiyorum."),
+  whatsapp:
+    "https://wa.me/903123190100?text=" + encodeURIComponent("Merhaba, randevu almak istiyorum."),
   address: "Cebeci, Cemal Gürsel Cad. No:109 D:11, 06570 Çankaya/Ankara",
   hours: "Her gün 09:00 - 23:00",
   openHour: 9,

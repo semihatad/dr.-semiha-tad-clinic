@@ -30,8 +30,8 @@ export function Hero() {
           </h1>
 
           <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Sağlıklı gülüşler için modern, hijyenik ve konforlu bir klinik deneyimi. Her gün
-            açığız — randevunuzu tek dokunuşla WhatsApp üzerinden alın.
+            Sağlıklı gülüşler için modern, hijyenik ve konforlu bir klinik deneyimi. Her gün açığız
+            — randevunuzu tek dokunuşla WhatsApp üzerinden alın.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -62,9 +62,7 @@ export function Hero() {
               <span
                 className={cn(
                   "inline-flex items-center gap-2 rounded-full px-4 py-2 font-semibold",
-                  status.open
-                    ? "bg-accent/15 text-primary"
-                    : "bg-muted text-muted-foreground",
+                  status.open ? "bg-accent/15 text-primary" : "bg-muted text-muted-foreground",
                 )}
               >
                 <span className="relative flex size-2">

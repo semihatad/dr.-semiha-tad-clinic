@@ -7,12 +7,30 @@ import {
 import { Reveal, SectionHeading } from "./Section";
 
 const FAQS = [
-  { q: "Randevu nasıl alabilirim?", a: "Randevularımızı WhatsApp üzerinden alıyoruz. Sayfadaki WhatsApp butonuna tıklayarak bize yazabilir veya telefonla ulaşabilirsiniz." },
-  { q: "Çalışma saatleriniz nedir?", a: "Kliniğimiz her gün 09:00 - 23:00 saatleri arasında hizmet vermektedir. Hafta sonu da açığız." },
-  { q: "Tedavi ücretleri hakkında bilgi alabilir miyim?", a: "Ücretler tedavi türüne ve ağız yapınıza göre değişir. Muayene sonrası size net bir tedavi planı ve fiyat bilgisi sunuyoruz." },
-  { q: "Anlaşmalı olduğunuz sigortalar var mı?", a: "Özel sağlık sigortaları ve kurumsal anlaşmalar hakkında güncel bilgi için bizimle iletişime geçebilirsiniz." },
-  { q: "Tedaviler ağrılı mı?", a: "Modern lokal anestezi yöntemleri sayesinde işlemler büyük ölçüde ağrısızdır. Konforunuz her aşamada önceliğimizdir." },
-  { q: "Otopark imkanı var mı?", a: "Klinik Cebeci'de merkezi bir konumda yer alır; çevrede sokak otoparkı ve toplu taşıma seçenekleri bulunmaktadır." },
+  {
+    q: "Randevu nasıl alabilirim?",
+    a: "Randevularımızı WhatsApp üzerinden alıyoruz. Sayfadaki WhatsApp butonuna tıklayarak bize yazabilir veya telefonla ulaşabilirsiniz.",
+  },
+  {
+    q: "Çalışma saatleriniz nedir?",
+    a: "Kliniğimiz her gün 09:00 - 23:00 saatleri arasında hizmet vermektedir. Hafta sonu da açığız.",
+  },
+  {
+    q: "Tedavi ücretleri hakkında bilgi alabilir miyim?",
+    a: "Ücretler tedavi türüne ve ağız yapınıza göre değişir. Muayene sonrası size net bir tedavi planı ve fiyat bilgisi sunuyoruz.",
+  },
+  {
+    q: "Anlaşmalı olduğunuz sigortalar var mı?",
+    a: "Özel sağlık sigortaları ve kurumsal anlaşmalar hakkında güncel bilgi için bizimle iletişime geçebilirsiniz.",
+  },
+  {
+    q: "Tedaviler ağrılı mı?",
+    a: "Modern lokal anestezi yöntemleri sayesinde işlemler büyük ölçüde ağrısızdır. Konforunuz her aşamada önceliğimizdir.",
+  },
+  {
+    q: "Otopark imkanı var mı?",
+    a: "Klinik Cebeci'de merkezi bir konumda yer alır; çevrede sokak otoparkı ve toplu taşıma seçenekleri bulunmaktadır.",
+  },
 ];
 
 export function Faq() {
