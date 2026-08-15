@@ -3,6 +3,8 @@ import { CLINIC, NAV_ITEMS } from "@/lib/clinic";
 import { Reveal, SectionHeading } from "./Section";
 import { useOpenStatus } from "./hooks";
 import { cn } from "@/lib/utils";
+import logoAsset from "@/assets/logo.png.asset.json";
+
 
 export function Contact() {
   const status = useOpenStatus();
