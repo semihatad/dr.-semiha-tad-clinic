@@ -19,6 +19,7 @@ export const CLINIC = {
 export const NAV_ITEMS = [
   { id: "hakkimizda", label: "Hakkımızda" },
   { id: "hizmetler", label: "Hizmetlerimiz" },
+  { id: "ekibimiz", label: "Ekibimiz" },
   { id: "galeri", label: "Galeri" },
   { id: "yorumlar", label: "Yorumlar" },
   { id: "sss", label: "SSS" },
