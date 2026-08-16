@@ -3,6 +3,7 @@ import { useInView } from "motion/react";
 import { ShieldCheck, HeartHandshake, Sparkles } from "lucide-react";
 import clinic1 from "@/assets/clinic-1.jpg";
 import clinic2 from "@/assets/clinic-2.jpg";
+import doctorImg from "@/assets/doctor.jpg";
 import { Reveal, SectionHeading } from "./Section";
 
 const STATS = [
