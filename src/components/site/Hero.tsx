@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { Clock, MessageCircle, Phone, MapPin } from "lucide-react";
-import doctorImg from "@/assets/doctor.jpg";
 import { CLINIC } from "@/lib/clinic";
 import { useOpenStatus } from "./hooks";
 import { cn } from "@/lib/utils";
@@ -10,59 +9,71 @@ export function Hero() {
 
   return (
     <section id="hero" className="relative overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-24">
-      <div className="pointer-events-none absolute -top-40 -right-32 size-[28rem] rounded-full bg-accent/10 blur-3xl" />
-      <div className="pointer-events-none absolute top-40 -left-40 size-[24rem] rounded-full bg-navy-100/60 blur-3xl" />
+      {/* Arka plan videosu */}
+      <video
+        src="/Images/clinic-video-hero.mp4"
+        muted
+        loop
+        playsInline
+        autoPlay
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      {/* Okunabilirlik için navy degrade overlay */}
+      <div className="absolute inset-0 bg-primary/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/40 via-primary/55 to-primary/85" />
 
-      <div className="relative mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary">
+          <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide text-white backdrop-blur">
             <span className="size-1.5 rounded-full bg-accent" />
             Çankaya / Ankara
           </span>
 
-          <h1 className="mt-5 text-4xl leading-[1.08] font-bold text-primary sm:text-5xl lg:text-6xl">
+          <h1 className="mt-5 text-4xl leading-[1.08] font-bold text-white sm:text-5xl lg:text-6xl">
             Dr. Semiha Tad
-            <span className="block text-muted-foreground">Diş Hekimi</span>
+            <span className="block text-white/80">Diş Hekimi</span>
           </h1>
 
-          <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
             Sağlıklı gülüşler için modern, hijyenik ve konforlu bir klinik deneyimi. Her gün açığız
             — randevunuzu tek dokunuşla WhatsApp üzerinden alın.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
               href={CLINIC.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-lg shadow-primary/15 transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-primary shadow-lg shadow-primary/30 transition-transform hover:-translate-y-0.5"
             >
               <MessageCircle className="size-4" />
               WhatsApp'tan Randevu Al
             </a>
             <a
               href={CLINIC.phoneHref}
-              className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3.5 text-sm font-semibold text-primary transition-colors hover:bg-navy-50"
+              className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/20"
             >
               <Phone className="size-4" />
               {CLINIC.phone}
             </a>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3 text-sm">
-            <span className="inline-flex items-center gap-2 rounded-full bg-navy-50 px-4 py-2 font-medium text-primary">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 font-medium text-white backdrop-blur">
               <Clock className="size-4 text-accent" />
               {CLINIC.hours}
             </span>
             {status && (
               <span
                 className={cn(
-                  "inline-flex items-center gap-2 rounded-full px-4 py-2 font-semibold",
-                  status.open ? "bg-accent/15 text-primary" : "bg-muted text-muted-foreground",
+                  "inline-flex items-center gap-2 rounded-full px-4 py-2 font-semibold backdrop-blur",
+                  status.open
+                    ? "bg-accent/20 text-white"
+                    : "bg-white/10 text-white/80",
                 )}
               >
                 <span className="relative flex size-2">
@@ -72,7 +83,7 @@ export function Hero() {
                   <span
                     className={cn(
                       "relative inline-flex size-2 rounded-full",
-                      status.open ? "bg-accent" : "bg-muted-foreground",
+                      status.open ? "bg-accent" : "bg-white/60",
                     )}
                   />
                 </span>
@@ -81,30 +92,10 @@ export function Hero() {
             )}
           </div>
 
-          <p className="mt-6 flex items-start gap-2 text-sm text-muted-foreground">
-            <MapPin className="mt-0.5 size-4 shrink-0 text-accent" />
+          <p className="mt-6 flex items-center justify-center gap-2 text-sm text-white/80">
+            <MapPin className="size-4 shrink-0 text-accent" />
             {CLINIC.address}
           </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-          className="relative"
-        >
-          <div className="absolute -inset-3 rounded-[2rem] bg-navy-50" aria-hidden />
-          <img
-            src={doctorImg}
-            alt="Dr. Semiha Tad, diş hekimi, kliniğinde"
-            width={1024}
-            height={1280}
-            className="relative aspect-[4/5] w-full rounded-[1.75rem] object-cover shadow-xl shadow-primary/10"
-          />
-          <div className="absolute right-4 bottom-4 rounded-2xl bg-background/95 px-5 py-3 shadow-lg backdrop-blur">
-            <p className="font-display text-2xl font-bold text-primary">15+</p>
-            <p className="text-xs text-muted-foreground">Yıllık Deneyim</p>
-          </div>
         </motion.div>
       </div>
     </section>
