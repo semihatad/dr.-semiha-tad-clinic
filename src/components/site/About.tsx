@@ -90,14 +90,16 @@ export function About() {
           </div>
 
           <Reveal className="grid grid-cols-2 gap-4">
-            <img
-              src={doctorImg}
-              alt="Dr. Semiha Tad, diş hekimi"
-              loading="lazy"
-              width={1024}
-              height={1280}
-              className="col-span-2 h-72 w-full rounded-2xl object-cover sm:h-80"
-            />
+            <div className="col-span-2 mx-auto w-full max-w-xs">
+              <img
+                src={doctorImg}
+                alt="Dr. Semiha Tad, diş hekimi"
+                loading="lazy"
+                width={1024}
+                height={1280}
+                className="aspect-[4/5] w-full rounded-2xl object-cover object-top shadow-lg shadow-primary/10"
+              />
+            </div>
             <img
               src={clinic1}
               alt="Klinik tedavi odası"
