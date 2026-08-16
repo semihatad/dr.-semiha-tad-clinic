@@ -91,12 +91,20 @@ export function About() {
 
           <Reveal className="grid grid-cols-2 gap-4">
             <img
+              src={doctorImg}
+              alt="Dr. Semiha Tad, diş hekimi"
+              loading="lazy"
+              width={1024}
+              height={1280}
+              className="col-span-2 h-72 w-full rounded-2xl object-cover sm:h-80"
+            />
+            <img
               src={clinic1}
               alt="Klinik tedavi odası"
               loading="lazy"
               width={1280}
               height={960}
-              className="col-span-2 h-56 w-full rounded-2xl object-cover sm:h-72"
+              className="h-40 w-full rounded-2xl object-cover sm:h-48"
             />
             <img
               src={clinic2}
@@ -106,7 +114,7 @@ export function About() {
               height={960}
               className="h-40 w-full rounded-2xl object-cover sm:h-48"
             />
-            <div className="flex h-40 flex-col justify-center rounded-2xl bg-primary p-5 text-primary-foreground sm:h-48">
+            <div className="col-span-2 flex h-24 flex-col justify-center rounded-2xl bg-primary p-5 text-primary-foreground sm:h-28">
               <p className="font-display text-lg font-semibold">Her gün açığız</p>
               <p className="mt-1 text-sm opacity-80">09:00 - 23:00 arası hizmetinizdeyiz.</p>
             </div>
