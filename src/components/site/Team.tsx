@@ -1,16 +1,16 @@
 import { Reveal, SectionHeading } from "./Section";
-import team1 from "@/assets/team-1.jpg.asset.json";
-import team2 from "@/assets/team-2.png.asset.json";
+import team1 from "@/assets/team-1.jpg";
+import team2 from "@/assets/team-2.webp";
 
 const TEAM = [
   {
-    img: team1.url,
+    img: team1,
     alt: "Dt. Semiha Tad hasta tedavisi sırasında",
     name: "Dt. Semiha Tad",
     role: "Diş Hekimi",
   },
   {
-    img: team2.url,
+    img: team2,
     alt: "Dr. Bünyamin Turhan ve sekreter Filiz Kütük klinikte",
     name: "Dr. Bünyamin Turhan & Filiz Kütük",
     role: "Diş Hekimi & Sekreter",
