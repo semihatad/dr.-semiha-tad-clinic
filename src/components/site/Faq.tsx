@@ -27,10 +27,6 @@ const FAQS = [
     q: "Tedaviler ağrılı mı?",
     a: "Modern lokal anestezi yöntemleri sayesinde işlemler büyük ölçüde ağrısızdır. Konforunuz her aşamada önceliğimizdir.",
   },
-  {
-    q: "Otopark imkanı var mı?",
-    a: "Klinik Cebeci'de merkezi bir konumda yer alır; çevrede sokak otoparkı ve toplu taşıma seçenekleri bulunmaktadır.",
-  },
 ];
 
 export function Faq() {

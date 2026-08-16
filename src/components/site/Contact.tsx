@@ -49,6 +49,12 @@ export function Contact() {
                 >
                   {CLINIC.phone}
                 </a>
+                <a
+                  href={CLINIC.phone2Href}
+                  className="mt-1 block text-sm text-muted-foreground hover:text-primary"
+                >
+                  {CLINIC.phone2}
+                </a>
               </div>
             </div>
 
@@ -172,6 +178,11 @@ export function Contact() {
               <li>
                 <a href={CLINIC.phoneHref} className="hover:text-primary">
                   {CLINIC.phone}
+                </a>
+              </li>
+              <li>
+                <a href={CLINIC.phone2Href} className="hover:text-primary">
+                  {CLINIC.phone2}
                 </a>
               </li>
               <li>{CLINIC.hours}</li>
