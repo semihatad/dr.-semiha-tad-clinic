@@ -3,6 +3,8 @@ export const CLINIC = {
   title: "Diş Hekimi",
   phone: "(0312) 319 01 00",
   phoneHref: "tel:+903123190100",
+  phone2: "+90 505 236 72 63",
+  phone2Href: "tel:+905052367263",
   whatsapp: "https://wa.me/905333001780?text=" + encodeURIComponent("Merhaba, randevu almak istiyorum."),
   instagram: "https://www.instagram.com/dt.semihatad/?utm_source=ig_web_button_share_sheet",
   googleBusiness: "https://www.google.com/search?q=Dt+Semiha+Tad&sourceid=chrome&ie=UTF-8",

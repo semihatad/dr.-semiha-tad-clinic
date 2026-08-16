@@ -7,7 +7,7 @@ const TEAM = [
     img: team1,
     alt: "Dt. Semiha Tad hasta tedavisi sırasında",
     name: "Dt. Semiha Tad",
-    role: "Diş Hekimi",
+    role: "Diş Hekimi & Klinik Sahibi",
   },
   {
     img: team2,

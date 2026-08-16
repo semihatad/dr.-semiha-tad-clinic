@@ -8,7 +8,7 @@ import { Reveal, SectionHeading } from "./Section";
 
 const STATS = [
   { value: 15, suffix: "+", label: "Yıllık Deneyim" },
-  { value: 5000, suffix: "+", label: "Mutlu Hasta" },
+  { value: 20000, suffix: "+", label: "Mutlu Hasta" },
   { value: 20, suffix: "+", label: "Farklı Tedavi" },
   { value: 98, suffix: "%", label: "Memnuniyet Oranı" },
 ];
@@ -51,7 +51,7 @@ function CountUp({ value, suffix }: { value: number; suffix?: string }) {
   }, [inView, value]);
 
   return (
-    <span ref={ref} className="font-display text-4xl font-bold text-primary sm:text-5xl">
+    <span ref={ref} className="font-display text-3xl font-bold tabular-nums text-primary sm:text-5xl">
       {n.toLocaleString("tr-TR")}
       {suffix}
     </span>
@@ -123,7 +123,7 @@ export function About() {
           </Reveal>
         </div>
 
-        <div className="mt-16 grid grid-cols-2 gap-6 rounded-3xl border border-border bg-navy-50/60 p-8 sm:mt-20 lg:grid-cols-4">
+        <div className="mt-16 grid grid-cols-2 gap-4 rounded-3xl border border-border bg-navy-50/60 p-5 sm:mt-20 sm:gap-6 sm:p-8 lg:grid-cols-4">
           {STATS.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08} className="text-center">
               <CountUp value={s.value} suffix={s.suffix} />
