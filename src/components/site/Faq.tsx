@@ -13,7 +13,7 @@ const FAQS = [
   },
   {
     q: "Çalışma saatleriniz nedir?",
-    a: "Kliniğimiz her gün 09:00 - 23:00 saatleri arasında hizmet vermektedir. Hafta sonu da açığız.",
+    a: "Kliniğimiz 7/24 açıktır. Gece gündüz, hafta sonu da dahil olmak üzere her zaman hizmetinizdeyiz.",
   },
   {
     q: "Tedavi ücretleri hakkında bilgi alabilir miyim?",
