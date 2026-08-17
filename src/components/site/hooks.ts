@@ -7,6 +7,11 @@ export function useOpenStatus() {
 
   useEffect(() => {
     const compute = () => {
+      const alwaysOpen = CLINIC.openHour === 0 && CLINIC.closeHour === 24;
+      if (alwaysOpen) {
+        setState({ open: true, label: "7/24 Açık" });
+        return;
+      }
       const parts = new Intl.DateTimeFormat("tr-TR", {
         timeZone: "Europe/Istanbul",
         hour: "2-digit",
