@@ -1,4 +1,4 @@
-import { MapPin, Phone, Clock, MessageCircle, Instagram } from "lucide-react";
+import { MapPin, Phone, Clock, Mail, MessageCircle, Instagram } from "lucide-react";
 import { CLINIC, NAV_ITEMS } from "@/lib/clinic";
 import { Reveal, SectionHeading } from "./Section";
 import { useOpenStatus } from "./hooks";
@@ -55,8 +55,27 @@ export function Contact() {
                 >
                   {CLINIC.phone2}
                 </a>
+                <a
+                  href={CLINIC.phone3Href}
+                  className="mt-1 block text-sm text-muted-foreground hover:text-primary"
+                >
+                  {CLINIC.phone3}
+                </a>
               </div>
             </div>
+
+            <a
+              href={`mailto:${CLINIC.email}`}
+              className="flex gap-4 rounded-2xl border border-border p-6 hover:bg-navy-50/50 transition-colors"
+            >
+              <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-navy-50 text-primary">
+                <Mail className="size-5" />
+              </span>
+              <div className="min-w-0">
+                <h3 className="font-display text-sm font-semibold text-primary">E-Posta</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{CLINIC.email}</p>
+              </div>
+            </a>
 
             <div className="flex gap-4 rounded-2xl border border-border p-6">
               <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-navy-50 text-primary">
@@ -183,6 +202,16 @@ export function Contact() {
               <li>
                 <a href={CLINIC.phone2Href} className="hover:text-primary">
                   {CLINIC.phone2}
+                </a>
+              </li>
+              <li>
+                <a href={CLINIC.phone3Href} className="hover:text-primary">
+                  {CLINIC.phone3}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${CLINIC.email}`} className="hover:text-primary">
+                  {CLINIC.email}
                 </a>
               </li>
               <li>{CLINIC.hours}</li>

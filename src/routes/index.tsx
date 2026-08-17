@@ -12,7 +12,7 @@ import { WhatsAppFab } from "@/components/site/WhatsAppFab";
 
 const title = "Dr. Semiha Tad — Diş Hekimi | Çankaya, Ankara";
 const description =
-  "Dr. Semiha Tad diş kliniği: Cebeci, Çankaya/Ankara. Genel diş hekimliği, implant, ortodonti ve estetik tedaviler. Her gün 09:00-23:00 açık.";
+  "Dr. Semiha Tad diş kliniği: Cebeci, Çankaya/Ankara. Genel diş hekimliği, implant, ortodonti ve estetik tedaviler. 7/24 açık.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
