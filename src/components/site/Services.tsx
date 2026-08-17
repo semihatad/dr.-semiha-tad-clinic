@@ -31,7 +31,16 @@ const SERVICES = [
     icon: Smile,
     title: "Protez",
     text: "Zirkonyum, porselen ve E-max seçenekleriyle doğal görünüm ve fonksiyon.",
-    chips: ["Zirkonyum", "Porselen", "Yaprak Porselen", "E-max", "Total / Parsiyel Protez"],
+    chips: [
+      "Monolitik Zirkonyum",
+      "Katmanlı Zirkonyum",
+      "Transparan Zirkonyum",
+      "Çok Katmanlı Zirkonyum",
+      "Porselen",
+      "Yaprak Porselen",
+      "E-max",
+      "Total / Parsiyel Protez",
+    ],
   },
   {
     icon: Bone,
