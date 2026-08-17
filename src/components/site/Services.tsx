@@ -38,7 +38,6 @@ const SERVICES = [
     title: "Cerrahi",
     text: "İmplant, gömülü diş operasyonu ve apikal rezeksiyon gibi cerrahi çözümler.",
     chips: ["İmplant", "Gömülü Diş Operasyonu", "Apikal Rezeksiyon"],
-    badge: "%99'a kadar başarı oranı",
   },
   {
     icon: Sparkles,
@@ -61,16 +60,16 @@ export function Services() {
           title="Genel diş hekimliği hizmetleri"
           description="İhtiyacınıza uygun tedaviyi birlikte planlıyoruz. Detaylı bilgi için WhatsApp'tan bize yazabilirsiniz."
         />
+        <Reveal className="mt-6 flex justify-center">
+          <span className="inline-flex items-center gap-2 rounded-full bg-accent/15 px-4 py-2 text-xs font-semibold text-accent sm:text-sm">
+            Tüm tedavilerde %99&apos;a kadar başarı oranı
+          </span>
+        </Reveal>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.map((s, i) => (
             <Reveal key={s.title} delay={(i % 4) * 0.06}>
               <article className="group relative h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-primary/5">
-                {s.badge ? (
-                  <span className="absolute right-4 top-4 rounded-full bg-accent/15 px-2.5 py-1 text-[11px] font-semibold text-accent">
-                    {s.badge}
-                  </span>
-                ) : null}
                 <span className="grid size-11 place-items-center rounded-xl bg-navy-50 text-primary transition-colors group-hover:bg-accent/15">
                   <s.icon className="size-5" />
                 </span>

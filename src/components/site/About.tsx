@@ -7,7 +7,7 @@ import doctorImg from "@/assets/team-1.jpg";
 import { Reveal, SectionHeading } from "./Section";
 
 const STATS = [
-  { value: 15, suffix: "+", label: "Yıllık Deneyim" },
+  { value: 30, suffix: "+", label: "Yıllık Deneyim" },
   { value: 20000, suffix: "+", label: "Mutlu Hasta" },
   { value: 20, suffix: "+", label: "Farklı Tedavi" },
   { value: 98, suffix: "%", label: "Memnuniyet Oranı" },
@@ -66,9 +66,10 @@ export function About() {
           <div>
             <SectionHeading
               eyebrow="Hakkımızda"
-              title="Ankara Çankaya'da güven veren bir diş kliniği"
-              description="Kliniğimizde koruyucu diş hekimliğinden estetik uygulamalara kadar geniş bir yelpazede
-              hizmet veriyoruz. Amacımız; ağrısız, konforlu ve şeffaf bir tedavi süreci sunmak."
+              title="Çankaya Cebeci'de, Dikimevi Metrosu'nun tam ayağında güven veren bir diş kliniği"
+              description="30 yılı aşan tecrübemizle Ankara Çankaya Cebeci'de, Dikimevi Metrosu'nun hemen çıkışında hizmet
+              veriyoruz. Koruyucu diş hekimliğinden estetik uygulamalara kadar geniş bir yelpazede; amacımız ağrısız,
+              konforlu ve şeffaf bir tedavi süreciyle güveninizi kazanmak."
             />
             <div className="mt-8 space-y-5">
               {VALUES.map((v, i) => (
