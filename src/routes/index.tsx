@@ -9,6 +9,7 @@ import { Testimonials } from "@/components/site/Testimonials";
 import { Faq } from "@/components/site/Faq";
 import { Contact } from "@/components/site/Contact";
 import { WhatsAppFab } from "@/components/site/WhatsAppFab";
+import { VideoSection } from "@/components/site/VideoSection";
 
 const title = "Dr. Semiha Tad — Diş Hekimi | Çankaya, Ankara";
 const description =
@@ -34,6 +35,7 @@ function Index() {
       <Navbar />
       <Hero />
       <About />
+      <VideoSection />
       <Services />
       <Team />
       <Gallery />
