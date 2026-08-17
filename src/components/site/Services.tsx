@@ -1,6 +1,5 @@
 import {
   Smile,
-  Stethoscope,
   Sparkles,
   Baby,
   Bone,
@@ -13,39 +12,38 @@ import { CLINIC } from "@/lib/clinic";
 
 const SERVICES = [
   {
-    icon: Stethoscope,
-    title: "Genel Diş Muayenesi",
-    text: "Detaylı ağız-diş kontrolü ve kişiye özel tedavi planlaması.",
-  },
-  {
-    icon: ShieldPlus,
-    title: "Dolgu Tedavisi",
-    text: "Estetik kompozit dolgular ile doğal görünüm ve dayanıklılık.",
+    icon: Braces,
+    title: "Ortodonti",
+    text: "Sabit (tel) ve hareketli plak tedavileriyle düzgün diş dizilimi.",
   },
   {
     icon: Syringe,
-    title: "Kanal Tedavisi",
+    title: "Endodonti (Kanal Tedavisi)",
     text: "Ağrısız, tek seansta tamamlanabilen modern kanal tedavisi.",
+  },
+  {
+    icon: ShieldPlus,
+    title: "Tedavi",
+    text: "Genel muayeneden ışınlı dolguya, ihtiyacınıza özel koruyucu ve tedavi edici uygulamalar.",
+    chips: ["Genel Muayene", "Işınlı Dolgu"],
+  },
+  {
+    icon: Smile,
+    title: "Protez",
+    text: "Zirkonyum, porselen ve E-max seçenekleriyle doğal görünüm ve fonksiyon.",
+    chips: ["Zirkonyum", "Porselen", "Yaprak Porselen", "E-max", "Total / Parsiyel Protez"],
+  },
+  {
+    icon: Bone,
+    title: "Cerrahi",
+    text: "İmplant, gömülü diş operasyonu ve apikal rezeksiyon gibi cerrahi çözümler.",
+    chips: ["İmplant", "Gömülü Diş Operasyonu", "Apikal Rezeksiyon"],
+    badge: "%99'a kadar başarı oranı",
   },
   {
     icon: Sparkles,
     title: "Diş Beyazlatma",
     text: "Klinik tipi beyazlatma ile birkaç ton daha aydınlık gülüş.",
-  },
-  {
-    icon: Smile,
-    title: "Protez ve Kaplama",
-    text: "Zirkonyum ve porselen kaplamalarla fonksiyon ve estetik.",
-  },
-  {
-    icon: Bone,
-    title: "İmplant Uygulaması",
-    text: "Eksik dişler için kalıcı ve konforlu implant çözümleri.",
-  },
-  {
-    icon: Braces,
-    title: "Ortodonti",
-    text: "Tel ve şeffaf plak tedavileri ile düzgün diş dizilimi.",
   },
   {
     icon: Baby,
@@ -67,7 +65,12 @@ export function Services() {
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {SERVICES.map((s, i) => (
             <Reveal key={s.title} delay={(i % 4) * 0.06}>
-              <article className="group h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-primary/5">
+              <article className="group relative h-full rounded-2xl border border-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg hover:shadow-primary/5">
+                {s.badge ? (
+                  <span className="absolute right-4 top-4 rounded-full bg-accent/15 px-2.5 py-1 text-[11px] font-semibold text-accent">
+                    {s.badge}
+                  </span>
+                ) : null}
                 <span className="grid size-11 place-items-center rounded-xl bg-navy-50 text-primary transition-colors group-hover:bg-accent/15">
                   <s.icon className="size-5" />
                 </span>
@@ -75,6 +78,18 @@ export function Services() {
                   {s.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+                {s.chips ? (
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {s.chips.map((chip) => (
+                      <span
+                        key={chip}
+                        className="rounded-full border border-border px-2.5 py-1 text-xs text-muted-foreground"
+                      >
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
               </article>
             </Reveal>
           ))}
