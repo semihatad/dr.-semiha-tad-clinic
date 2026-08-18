@@ -1,48 +1,179 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { cn } from "@/lib/utils";
 import clinic1 from "@/assets/clinic-1.jpg";
 import clinic2 from "@/assets/clinic-2.jpg";
 import clinic3 from "@/assets/clinic-3.jpg";
 import { Reveal, SectionHeading } from "./Section";
 
+// Yeni vaka görselleri
+import orthoAligner from "@/assets/cases/ortho-aligner.png";
+import orthoBraces from "@/assets/cases/ortho-braces.png";
+import composite1 from "@/assets/cases/composite-1.jpg";
+import composite2 from "@/assets/cases/composite-2.jpg";
+import rootMicroscope from "@/assets/cases/root-microscope.png";
+import rootXray from "@/assets/cases/root-xray.png";
+import prosthesisCrown1 from "@/assets/cases/prosthesis-crown-1.png";
+import prosthesisCrown2 from "@/assets/cases/prosthesis-crown-2.png";
+import prosthesisDentureMetal from "@/assets/cases/prosthesis-denture-metal.png";
+import prosthesisCrownModel from "@/assets/cases/prosthesis-crown-model.jpg";
+import prosthesisDentureTotal from "@/assets/cases/prosthesis-denture-total.jpg";
+import prosthesisCrownModelYellow from "@/assets/cases/prosthesis-crown-model-yellow.jpg";
+
+const CATEGORIES = [
+  { id: "all", label: "Tümü" },
+  { id: "clinic", label: "Kliniğimiz" },
+  { id: "prosthetics", label: "Zirkonyum & Protez" },
+  { id: "orthodontics", label: "Şeffaf Plak & Tel" },
+  { id: "rootcanal", label: "Kanal Tedavisi" },
+  { id: "composite", label: "Estetik Dolgu" },
+] as const;
+
 const ITEMS = [
+  // Klinik Tanıtım Videosu
   {
     type: "video" as const,
     src: "/Images/clinic-video.mp4",
     alt: "Klinik Tanıtım Videosu",
+    category: "clinic" as const,
+    isRealCase: false,
   },
   {
     type: "video" as const,
     src: "/Images/clinic-video-2.mp4",
-    alt: "",
+    alt: "Kliniğimizden Görüntüler",
+    category: "clinic" as const,
+    isRealCase: false,
   },
+  // Klinik Resimleri
   {
     type: "image" as const,
     src: clinic1,
     alt: "Diş Tedavi Odası",
+    category: "clinic" as const,
+    isRealCase: false,
   },
   {
     type: "image" as const,
     src: clinic2,
     alt: "Klinik Giriş ve Bekleme Alanı",
+    category: "clinic" as const,
+    isRealCase: false,
   },
   {
     type: "image" as const,
     src: clinic3,
     alt: "Modern Diş Muayene Ünitesi",
+    category: "clinic" as const,
+    isRealCase: false,
+  },
+  // Ortodonti
+  {
+    type: "image" as const,
+    src: orthoAligner,
+    alt: "Şeffaf Plak Uygulaması",
+    category: "orthodontics" as const,
+    isRealCase: true,
+  },
+  {
+    type: "image" as const,
+    src: orthoBraces,
+    alt: "Metal Diş Teli Uygulaması",
+    category: "orthodontics" as const,
+    isRealCase: true,
+  },
+  // Kompozit Lamina / Dolgu
+  {
+    type: "image" as const,
+    src: composite1,
+    alt: "Kompozit Lamina Uygulaması",
+    category: "composite" as const,
+    isRealCase: true,
+  },
+  {
+    type: "image" as const,
+    src: composite2,
+    alt: "Estetik Kompozit Dolgu Uygulaması",
+    category: "composite" as const,
+    isRealCase: true,
+  },
+  // Kanal Tedavisi
+  {
+    type: "image" as const,
+    src: rootMicroscope,
+    alt: "Mikroskop Altında Kanal Tedavisi",
+    category: "rootcanal" as const,
+    isRealCase: true,
+  },
+  {
+    type: "image" as const,
+    src: rootXray,
+    alt: "Kanal Tedavisi Sonrası Röntgen Görünümü",
+    category: "rootcanal" as const,
+    isRealCase: true,
+  },
+  // Protez & Zirkonyum
+  {
+    type: "image" as const,
+    src: prosthesisCrown1,
+    alt: "Üst Çene Zirkonyum Kron Restorasyonu",
+    category: "prosthetics" as const,
+    isRealCase: true,
+  },
+  {
+    type: "image" as const,
+    src: prosthesisCrown2,
+    alt: "Zirkonyum Diş Protezi Uygulaması",
+    category: "prosthetics" as const,
+    isRealCase: true,
+  },
+  {
+    type: "image" as const,
+    src: prosthesisDentureMetal,
+    alt: "Hassas Bağlantılı İskelet Protezi",
+    category: "prosthetics" as const,
+    isRealCase: true,
+  },
+  {
+    type: "image" as const,
+    src: prosthesisCrownModel,
+    alt: "Laboratuvarda Zirkonyum Diş Hazırlığı",
+    category: "prosthetics" as const,
+    isRealCase: true,
+  },
+  {
+    type: "image" as const,
+    src: prosthesisDentureTotal,
+    alt: "Grid Güçlendirmeli Total Protez Çalışması",
+    category: "prosthetics" as const,
+    isRealCase: true,
+  },
+  {
+    type: "image" as const,
+    src: prosthesisCrownModelYellow,
+    alt: "Diş Laboratuvarında Zirkonyum Kron Hazırlığı",
+    category: "prosthetics" as const,
+    isRealCase: true,
   },
 ];
 
 export function Gallery() {
   const [index, setIndex] = useState<number | null>(null);
+  const [selectedTab, setSelectedTab] = useState<string>("all");
+
+  const filteredItems =
+    selectedTab === "all"
+      ? ITEMS
+      : ITEMS.filter((item) => item.category === selectedTab);
 
   useEffect(() => {
     if (index === null) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIndex(null);
-      if (e.key === "ArrowRight") setIndex((i) => ((i ?? 0) + 1) % ITEMS.length);
-      if (e.key === "ArrowLeft") setIndex((i) => ((i ?? 0) - 1 + ITEMS.length) % ITEMS.length);
+      if (e.key === "ArrowRight") setIndex((i) => ((i ?? 0) + 1) % filteredItems.length);
+      if (e.key === "ArrowLeft")
+        setIndex((i) => ((i ?? 0) - 1 + filteredItems.length) % filteredItems.length);
     };
     document.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
@@ -50,30 +181,53 @@ export function Gallery() {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
-  }, [index]);
+  }, [index, filteredItems.length]);
 
   return (
     <section id="galeri" className="scroll-mt-24 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
-          eyebrow="Galeri"
-          title="Kliniğimizden kareler"
-          description="Ferah, hijyenik ve konforlu bir ortamda hizmet veriyoruz. Fotoğrafa tıklayarak büyütebilirsiniz."
+          eyebrow="Galeri ve Vakalarımız"
+          title="Klinik ekibimizin gerçek uygulamaları"
+          description="Kliniğimizden kareler ve hekimlerimizin gerçekleştirdiği tedavi süreçleri. Fotoğrafa tıklayarak büyütebilirsiniz."
         />
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {ITEMS.map((item, i) => {
+        {/* Kategori Sekmeleri */}
+        <div className="mt-8 flex flex-wrap gap-2">
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => {
+                setSelectedTab(cat.id);
+                setIndex(null);
+              }}
+              className={cn(
+                "rounded-full px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer",
+                selectedTab === cat.id
+                  ? "bg-accent text-primary shadow-lg shadow-accent/20"
+                  : "bg-navy-50 text-muted-foreground hover:bg-navy-100 hover:text-primary",
+              )}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredItems.map((item, i) => {
             const isVideo = item.type === "video";
             return (
               <Reveal
-                key={i}
-                delay={(i % 3) * 0.06}
+                key={item.src}
+                delay={(i % 3) * 0.05}
                 className={
-                  i === 0
-                    ? "sm:col-span-2 lg:col-span-2 lg:row-span-2"
-                    : i === 1
-                      ? "sm:col-span-2 lg:col-span-1 lg:row-span-2"
-                      : ""
+                  selectedTab === "all" && isVideo
+                    ? i === 0
+                      ? "sm:col-span-2 lg:col-span-2 lg:row-span-2"
+                      : i === 1
+                        ? "sm:col-span-2 lg:col-span-1 lg:row-span-2"
+                        : ""
+                    : ""
                 }
               >
                 <button
@@ -83,8 +237,16 @@ export function Gallery() {
                       ? "h-72 sm:h-96 lg:h-[464px]"
                       : "h-56 w-full lg:h-[224px]"
                   }`}
-                  aria-label={`${item.alt || "Klinik Görseli"} — büyüt`}
+                  aria-label={`${item.alt || "Klinik Görseli"} — büyüüt`}
                 >
+                  {/* Real Case Badge */}
+                  {item.isRealCase && (
+                    <span className="absolute top-3 left-3 z-10 flex items-center gap-1.5 rounded-full bg-accent/95 px-2.5 py-1 text-[10px] font-bold text-primary shadow-md border border-primary/10">
+                      <span className="size-1.5 rounded-full bg-primary animate-pulse" />
+                      ✓ Klinik Ekibimizin Uygulaması
+                    </span>
+                  )}
+
                   {isVideo ? (
                     <>
                       <video
@@ -125,7 +287,7 @@ export function Gallery() {
       </div>
 
       <AnimatePresence>
-        {index !== null && (
+        {index !== null && filteredItems[index] && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -136,52 +298,66 @@ export function Gallery() {
             aria-modal="true"
           >
             <button
-              className="absolute top-5 right-5 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground"
+              className="absolute top-5 right-5 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground cursor-pointer"
               aria-label="Kapat"
               onClick={() => setIndex(null)}
             >
               <X className="size-5" />
             </button>
             <button
-              className="absolute left-3 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground sm:left-8"
+              className="absolute left-3 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground sm:left-8 cursor-pointer"
               aria-label="Önceki"
               onClick={(e) => {
                 e.stopPropagation();
-                setIndex((i) => ((i ?? 0) - 1 + ITEMS.length) % ITEMS.length);
+                setIndex((i) => ((i ?? 0) - 1 + filteredItems.length) % filteredItems.length);
               }}
             >
               <ChevronLeft className="size-5" />
             </button>
 
-            {ITEMS[index]!.type === "video" ? (
+            {filteredItems[index].type === "video" ? (
               <motion.video
                 key={index}
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
-                src={ITEMS[index]!.src}
+                src={filteredItems[index].src}
                 controls
                 autoPlay
                 onClick={(e) => e.stopPropagation()}
-                className="max-h-[85vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl"
+                className="max-h-[80vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl"
               />
             ) : (
               <motion.img
                 key={index}
                 initial={{ opacity: 0, scale: 0.96 }}
                 animate={{ opacity: 1, scale: 1 }}
-                src={ITEMS[index]!.src}
-                alt={ITEMS[index]!.alt}
+                src={filteredItems[index].src}
+                alt={filteredItems[index].alt}
                 onClick={(e) => e.stopPropagation()}
-                className="max-h-[85vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl"
+                className="max-h-[80vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl"
               />
             )}
 
+            <div
+              className="absolute bottom-6 left-1/2 -translate-x-1/2 max-w-[90vw] text-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <p className="font-display text-sm font-semibold text-white bg-black/75 px-5 py-2.5 rounded-full backdrop-blur-md shadow-lg border border-white/10 flex flex-wrap items-center justify-center gap-2">
+                <span>{filteredItems[index].alt}</span>
+                {filteredItems[index].isRealCase && (
+                  <span className="inline-flex items-center gap-1 rounded bg-accent/25 px-2 py-0.5 text-[10px] font-bold text-accent border border-accent/20">
+                    ✓ Klinik Ekibimizin Uygulaması
+                  </span>
+                )}
+              </p>
+            </div>
+
             <button
-              className="absolute right-3 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground sm:right-8"
+              className="absolute right-3 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground sm:right-8 cursor-pointer"
               aria-label="Sonraki"
               onClick={(e) => {
                 e.stopPropagation();
-                setIndex((i) => ((i ?? 0) + 1) % ITEMS.length);
+                setIndex((i) => ((i ?? 0) + 1) % filteredItems.length);
               }}
             >
               <ChevronRight className="size-5" />

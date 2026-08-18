@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useInView } from "motion/react";
 import { ShieldCheck, HeartHandshake, Sparkles } from "lucide-react";
 import clinic1 from "@/assets/clinic-1.jpg";
-import clinic2 from "@/assets/clinic-2.jpg";
+import treatmentImg from "@/assets/about-treatment.png";
 import doctorImg from "@/assets/team-1.jpg";
 import { Reveal, SectionHeading } from "./Section";
 
@@ -110,8 +110,8 @@ export function About() {
               className="h-40 w-full rounded-2xl object-cover sm:h-48"
             />
             <img
-              src={clinic2}
-              alt="Klinik bekleme alanı"
+              src={treatmentImg}
+              alt="Klinik ekibi tedavi esnasında"
               loading="lazy"
               width={1280}
               height={960}
