@@ -20,6 +20,7 @@ import prosthesisDentureMetal from "@/assets/cases/prosthesis-denture-metal.png"
 import prosthesisCrownModel from "@/assets/cases/prosthesis-crown-model.jpg";
 import prosthesisDentureTotal from "@/assets/cases/prosthesis-denture-total.jpg";
 import prosthesisCrownModelYellow from "@/assets/cases/prosthesis-crown-model-yellow.jpg";
+import pedodonticsTreatment from "@/assets/cases/pedodontics-treatment.png";
 
 const CATEGORIES = [
   { id: "all", label: "Tümü" },
@@ -28,6 +29,7 @@ const CATEGORIES = [
   { id: "orthodontics", label: "Şeffaf Plak & Tel" },
   { id: "rootcanal", label: "Kanal Tedavisi" },
   { id: "composite", label: "Estetik Dolgu" },
+  { id: "pedodontics", label: "Çocuk Diş Hekimliği" },
 ] as const;
 
 const ITEMS = [
@@ -112,6 +114,7 @@ const ITEMS = [
     alt: "Kanal Tedavisi Sonrası Röntgen Görünümü",
     category: "rootcanal" as const,
     isRealCase: true,
+    fit: "contain" as const,
   },
   // Protez & Zirkonyum
   {
@@ -155,6 +158,15 @@ const ITEMS = [
     alt: "Diş Laboratuvarında Zirkonyum Kron Hazırlığı",
     category: "prosthetics" as const,
     isRealCase: true,
+  },
+  // Çocuk Diş Hekimliği
+  {
+    type: "image" as const,
+    src: pedodonticsTreatment,
+    alt: "Çocuk Hasta Tedavi Süreci",
+    category: "pedodontics" as const,
+    isRealCase: true,
+    fit: "contain" as const,
   },
 ];
 
@@ -274,7 +286,10 @@ export function Gallery() {
                         src={item.src}
                         alt={item.alt}
                         loading="lazy"
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        className={cn(
+                          "h-full w-full transition-transform duration-500 group-hover:scale-105",
+                          item.fit === "contain" ? "object-contain bg-navy-950/10 p-2" : "object-cover"
+                        )}
                       />
                       <span className="absolute inset-0 bg-primary/0 transition-colors duration-300 group-hover:bg-primary/15" />
                     </>

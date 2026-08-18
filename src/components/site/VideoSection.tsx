@@ -16,13 +16,13 @@ export function VideoSection() {
           <SectionHeading
             eyebrow="Basında Biz"
             title="Dr. Semiha Tad TV Ekranlarında"
-            description="Dt. Semiha Tad, Show TV'de yayınlanan 'Hayat Güzeldir' programına konuk olarak implant tedavisi, merak edilenler ve modern diş hekimliği uygulamaları hakkında değerli bilgiler paylaştı."
+            description="Dt. Semiha Tad; Dost TV, Meltem TV ve Mesaj TV kanallarında canlı yayın konuğu olarak implant tedavisi, ağız ve diş sağlığı, implantoloji ve koruyucu diş hekimliği konularında bilgilendirici yayınlar gerçekleştirmiştir."
             className="items-center text-center"
           />
 
           <Reveal className="mt-6 flex justify-center">
             <span className="inline-flex items-center gap-2 rounded-full bg-accent/15 px-4 py-2 text-xs font-semibold text-accent sm:text-sm">
-              <Tv className="size-4" /> Show TV - Hayat Güzeldir Programı Konuğu
+              <Tv className="size-4" /> Dost TV, Meltem TV, Mesaj TV Yayın Konuğu
             </span>
           </Reveal>
         </div>
@@ -63,10 +63,10 @@ export function VideoSection() {
                       </span>
                       <div>
                         <p className="text-xs font-semibold tracking-wider text-accent uppercase">
-                          Haber / Röportaj
+                          Dost TV Yayın Konuğu
                         </p>
                         <h3 className="font-display text-sm font-semibold sm:text-base">
-                          İmplant Tedavisi ve Diş Sağlığı Merak Edilenler
+                          Dost TV - İmplant Tedavisi ve Diş Sağlığı
                         </h3>
                       </div>
                     </div>

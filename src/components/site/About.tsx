@@ -117,11 +117,7 @@ export function About() {
               height={960}
               className="h-40 w-full rounded-2xl object-cover sm:h-48"
             />
-            <div className="col-span-2 flex h-24 flex-col justify-center rounded-2xl bg-primary p-5 text-primary-foreground sm:h-28">
-              <p className="font-display text-lg font-semibold">7/24 açığız</p>
-              <p className="mt-1 text-sm opacity-80">Gece gündüz hizmetinizdeyiz.</p>
-            </div>
-          </Reveal>
+           </Reveal>
         </div>
 
         <div className="mt-16 grid grid-cols-2 gap-4 rounded-3xl border border-border bg-navy-50/60 p-5 sm:mt-20 sm:gap-6 sm:p-8 lg:grid-cols-4">

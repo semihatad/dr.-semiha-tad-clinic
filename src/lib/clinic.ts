@@ -7,6 +7,8 @@ export const CLINIC = {
   phone2Href: "tel:+905052367263",
   phone3: "0 537 654 48 44",
   phone3Href: "tel:+905376544844",
+  phone4: "+90 533 300 17 80",
+  phone4Href: "tel:+905333001780",
   email: "semiha.tad@hotmail.com",
   whatsapp: "https://wa.me/905333001780?text=" + encodeURIComponent("Merhaba, randevu almak istiyorum."),
   instagram: "https://www.instagram.com/dt.semihatad/?utm_source=ig_web_button_share_sheet",
