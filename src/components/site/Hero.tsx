@@ -3,8 +3,11 @@ import { Clock, MessageCircle, Phone, MapPin } from "lucide-react";
 import { CLINIC } from "@/lib/clinic";
 import { useOpenStatus } from "./hooks";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/components/site/LanguageContext";
 
 export function Hero() {
+  const { t } = useLanguage();
+  const whatsappUrl = "https://wa.me/905333001780?text=" + encodeURIComponent(t("whatsappMsg"));
   const status = useOpenStatus();
 
   return (
@@ -30,42 +33,41 @@ export function Hero() {
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide text-white backdrop-blur">
             <span className="size-1.5 rounded-full bg-accent" />
-            Çankaya / Ankara
+            {t("hero.location")}
           </span>
 
           <h1 className="mt-5 text-4xl leading-[1.08] font-bold text-white sm:text-5xl lg:text-6xl">
-            Dr. Semiha Tad
-            <span className="block text-white/80">Diş Hekimi</span>
+            {t("hero.title")}
+            <span className="block text-white/80">{t("hero.subtitle")}</span>
           </h1>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/85 sm:text-lg">
-            Sağlıklı gülüşler için modern, hijyenik ve konforlu bir klinik deneyimi. Her gün açığız
-            — randevunuzu tek dokunuşla WhatsApp üzerinden alın.
+            {t("hero.description")}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
-              href={CLINIC.whatsapp}
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-primary shadow-lg shadow-primary/30 transition-transform hover:-translate-y-0.5"
             >
               <MessageCircle className="size-4" />
-              WhatsApp'tan Randevu Al
+              {t("hero.btnWhatsapp")}
             </a>
             <a
               href={CLINIC.phoneHref}
               className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur transition-colors hover:bg-white/20"
             >
               <Phone className="size-4" />
-              {CLINIC.phone}
+              {t("hero.btnPhone")}
             </a>
           </div>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm">
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 font-medium text-white backdrop-blur">
               <Clock className="size-4 text-accent" />
-              {CLINIC.hours}
+              {t("hero.openHours")}
             </span>
             {status && (
               <span
@@ -87,7 +89,7 @@ export function Hero() {
                     )}
                   />
                 </span>
-                {status.label}
+                {status.open ? t("hero.statusOpen") : t("hero.statusClosed")}
               </span>
             )}
           </div>

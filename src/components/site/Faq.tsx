@@ -5,43 +5,24 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Reveal, SectionHeading } from "./Section";
-
-const FAQS = [
-  {
-    q: "Randevu nasıl alabilirim?",
-    a: "Randevularımızı WhatsApp üzerinden alıyoruz. Sayfadaki WhatsApp butonuna tıklayarak bize yazabilir veya telefonla ulaşabilirsiniz.",
-  },
-  {
-    q: "Çalışma saatleriniz nedir?",
-    a: "Kliniğimiz 7/24 açıktır. Gece gündüz, hafta sonu da dahil olmak üzere her zaman hizmetinizdeyiz.",
-  },
-  {
-    q: "Tedavi ücretleri hakkında bilgi alabilir miyim?",
-    a: "Ücretler tedavi türüne ve ağız yapınıza göre değişir. Muayene sonrası size net bir tedavi planı ve fiyat bilgisi sunuyoruz.",
-  },
-  {
-    q: "Anlaşmalı olduğunuz sigortalar var mı?",
-    a: "Özel sağlık sigortaları ve kurumsal anlaşmalar hakkında güncel bilgi için bizimle iletişime geçebilirsiniz.",
-  },
-  {
-    q: "Tedaviler ağrılı mı?",
-    a: "Modern lokal anestezi yöntemleri sayesinde işlemler büyük ölçüde ağrısızdır. Konforunuz her aşamada önceliğimizdir.",
-  },
-];
+import { useLanguage } from "@/components/site/LanguageContext";
 
 export function Faq() {
+  const { t } = useLanguage();
+  const faqList = t("faq.list") as Array<{ q: string; a: string }>;
+
   return (
     <section id="sss" className="scroll-mt-24 py-20 sm:py-28">
       <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr]">
         <SectionHeading
-          eyebrow="SSS"
-          title="Sıkça sorulan sorular"
-          description="Aklınıza takılan başka bir soru varsa WhatsApp'tan yazmanız yeterli."
+          eyebrow={t("faq.eyebrow")}
+          title={t("faq.title")}
+          description={t("faq.description")}
         />
 
         <Reveal>
           <Accordion type="single" collapsible className="w-full">
-            {FAQS.map((f, i) => (
+            {faqList.map((f, i) => (
               <AccordionItem key={f.q} value={`item-${i}`} className="border-border">
                 <AccordionTrigger className="text-left font-display text-base font-semibold text-primary hover:no-underline">
                   {f.q}

@@ -5,6 +5,7 @@ import clinic1 from "@/assets/clinic-1.jpg";
 import treatmentImg from "@/assets/about-treatment.png";
 import doctorImg from "@/assets/team-1.jpg";
 import { Reveal, SectionHeading } from "./Section";
+import { useLanguage } from "@/components/site/LanguageContext";
 
 const STATS = [
   { value: 30, suffix: "+", label: "Yıllık Deneyim" },
@@ -33,25 +34,32 @@ const VALUES = [
 
 function CountUp({ value, suffix }: { value: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, margin: "-100px" });
   const [n, setN] = useState(0);
 
   useEffect(() => {
     if (!inView) return;
-    const duration = 1600;
-    const start = performance.now();
-    let raf = 0;
-    const tick = (now: number) => {
-      const p = Math.min((now - start) / duration, 1);
-      setN(Math.round(value * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    let start = 0;
+    const end = value;
+    if (start === end) return;
+
+    let totalDuration = 2000;
+    let increment = Math.ceil(end / (totalDuration / 16));
+    let timer = setInterval(() => {
+      start += increment;
+      if (start >= end) {
+        clearInterval(timer);
+        setN(end);
+      } else {
+        setN(start);
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
   }, [inView, value]);
 
   return (
-    <span ref={ref} className="font-display text-3xl font-bold tabular-nums text-primary sm:text-5xl">
+    <span ref={ref} className="font-display text-3xl font-bold text-primary sm:text-4xl">
       {n.toLocaleString("tr-TR")}
       {suffix}
     </span>
@@ -59,34 +67,48 @@ function CountUp({ value, suffix }: { value: number; suffix?: string }) {
 }
 
 export function About() {
+  const { t } = useLanguage();
+
   return (
     <section id="hakkimizda" className="scroll-mt-24 border-t border-border py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
             <SectionHeading
-              eyebrow="Hakkımızda"
-              title="Çankaya Cebeci'de, Dikimevi Metrosu'nun tam ayağında güven veren bir diş kliniği"
-              description="30 yılı aşan tecrübemizle Ankara Çankaya Cebeci'de, Dikimevi Metrosu'nun hemen çıkışında hizmet
-              veriyoruz. Koruyucu diş hekimliğinden estetik uygulamalara kadar geniş bir yelpazede; amacımız ağrısız,
-              konforlu ve şeffaf bir tedavi süreciyle güveninizi kazanmak."
+              eyebrow={t("about.eyebrow")}
+              title={t("about.title")}
+              description={t("about.description")}
             />
             <div className="mt-8 space-y-5">
-              {VALUES.map((v, i) => (
-                <Reveal key={v.title} delay={i * 0.08}>
-                  <div className="flex gap-4">
-                    <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-navy-50 text-primary">
-                      <v.icon className="size-5" />
-                    </span>
-                    <div className="min-w-0">
-                      <h3 className="font-display text-base font-semibold text-primary">
-                        {v.title}
-                      </h3>
-                      <p className="mt-1 text-sm text-muted-foreground">{v.text}</p>
+              {VALUES.map((v, i) => {
+                let title = v.title;
+                let text = v.text;
+                if (v.title === "Steril ve Güvenli") {
+                  title = t("about.values.sterilTitle");
+                  text = t("about.values.sterilText");
+                } else if (v.title === "Hasta Odaklı") {
+                  title = t("about.values.patientTitle");
+                  text = t("about.values.patientText");
+                } else if (v.title === "Modern Teknoloji") {
+                  title = t("about.values.techTitle");
+                  text = t("about.values.techText");
+                }
+                return (
+                  <Reveal key={v.title} delay={i * 0.08}>
+                    <div className="flex gap-4">
+                      <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-navy-50 text-primary">
+                        <v.icon className="size-5" />
+                      </span>
+                      <div className="min-w-0">
+                        <h3 className="font-display text-base font-semibold text-primary">
+                          {title}
+                        </h3>
+                        <p className="mt-1 text-sm text-muted-foreground">{text}</p>
+                      </div>
                     </div>
-                  </div>
-                </Reveal>
-              ))}
+                  </Reveal>
+                );
+              })}
             </div>
           </div>
 
@@ -94,7 +116,7 @@ export function About() {
             <div className="col-span-2 mx-auto w-full max-w-xs">
               <img
                 src={doctorImg}
-                alt="Dr. Semiha Tad, diş hekimi"
+                alt={`${t("hero.title")}, ${t("hero.subtitle")}`}
                 loading="lazy"
                 width={1024}
                 height={1280}
@@ -103,7 +125,7 @@ export function About() {
             </div>
             <img
               src={clinic1}
-              alt="Klinik tedavi odası"
+              alt={t("gallery.items.clinic1")}
               loading="lazy"
               width={1280}
               height={960}
@@ -111,7 +133,7 @@ export function About() {
             />
             <img
               src={treatmentImg}
-              alt="Klinik ekibi tedavi esnasında"
+              alt={t("about.treatmentAlt")}
               loading="lazy"
               width={1280}
               height={960}
@@ -121,12 +143,19 @@ export function About() {
         </div>
 
         <div className="mt-16 grid grid-cols-2 gap-4 rounded-3xl border border-border bg-navy-50/60 p-5 sm:mt-20 sm:gap-6 sm:p-8 lg:grid-cols-4">
-          {STATS.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.08} className="text-center">
-              <CountUp value={s.value} suffix={s.suffix} />
-              <p className="mt-2 text-sm text-muted-foreground">{s.label}</p>
-            </Reveal>
-          ))}
+          {STATS.map((s, i) => {
+            let label = s.label;
+            if (s.label === "Yıllık Deneyim") label = t("about.stats.exp");
+            if (s.label === "Mutlu Hasta") label = t("about.stats.happy");
+            if (s.label === "Farklı Tedavi") label = t("about.stats.treatment");
+            if (s.label === "Memnuniyet Oranı") label = t("about.stats.satisfaction");
+            return (
+              <Reveal key={s.label} delay={i * 0.08} className="text-center">
+                <CountUp value={s.value} suffix={s.suffix} />
+                <p className="mt-2 text-sm text-muted-foreground">{label}</p>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

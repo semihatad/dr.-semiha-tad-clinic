@@ -6,6 +6,31 @@ import clinic1 from "@/assets/clinic-1.jpg";
 import clinic2 from "@/assets/clinic-2.jpg";
 import clinic3 from "@/assets/clinic-3.jpg";
 import { Reveal, SectionHeading } from "./Section";
+import { useLanguage } from "@/components/site/LanguageContext";
+
+const getTranslationKey = (alt: string) => {
+  switch (alt) {
+    case "Klinik Tanıtım Videosu": return "video1";
+    case "Kliniğimizden Görüntüler": return "video2";
+    case "Diş Tedavi Odası": return "clinic1";
+    case "Klinik Giriş ve Bekleme Alanı": return "clinic2";
+    case "Modern Diş Muayene Ünitesi": return "clinic3";
+    case "Şeffaf Plak Uygulaması": return "orthoAligner";
+    case "Metal Diş Teli Uygulaması": return "orthoBraces";
+    case "Kompozit Lamina Uygulaması": return "composite1";
+    case "Estetik Kompozit Dolgu Uygulaması": return "composite2";
+    case "Mikroskop Altında Kanal Tedavisi": return "rootMicroscope";
+    case "Kanal Tedavisi Sonrası Röntgen Görünümü": return "rootXray";
+    case "Üst Çene Zirkonyum Kron Restorasyonu": return "prosthesisCrown1";
+    case "Zirkonyum Diş Protezi Uygulaması": return "prosthesisCrown2";
+    case "Hassas Bağlantılı İskelet Protezi": return "prosthesisDentureMetal";
+    case "Laboratuvarda Zirkonyum Diş Hazırlığı": return "prosthesisCrownModel";
+    case "Grid Güçlendirmeli Total Protez Çalışması": return "prosthesisDentureTotal";
+    case "Diş Laboratuvarında Zirkonyum Kron Hazırlığı": return "prosthesisCrownModelYellow";
+    case "Çocuk Hasta Tedavi Süreci": return "pedodonticsTreatment";
+    default: return "";
+  }
+};
 
 // Yeni vaka görselleri
 import orthoAligner from "@/assets/cases/ortho-aligner.png";
@@ -171,6 +196,7 @@ const ITEMS = [
 ];
 
 export function Gallery() {
+  const { t } = useLanguage();
   const [index, setIndex] = useState<number | null>(null);
   const [selectedTab, setSelectedTab] = useState<string>("all");
 
@@ -199,9 +225,9 @@ export function Gallery() {
     <section id="galeri" className="scroll-mt-24 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
-          eyebrow="Galeri ve Vakalarımız"
-          title="Klinik ekibimizin gerçek uygulamaları"
-          description="Kliniğimizden kareler ve hekimlerimizin gerçekleştirdiği tedavi süreçleri. Fotoğrafa tıklayarak büyütebilirsiniz."
+          eyebrow={t("gallery.eyebrow")}
+          title={t("gallery.title")}
+          description={t("gallery.description")}
         />
 
         {/* Kategori Sekmeleri */}
@@ -220,7 +246,7 @@ export function Gallery() {
                   : "bg-navy-50 text-muted-foreground hover:bg-navy-100 hover:text-primary",
               )}
             >
-              {cat.label}
+              {t("gallery.categories." + cat.id)}
             </button>
           ))}
         </div>
@@ -228,6 +254,9 @@ export function Gallery() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filteredItems.map((item, i) => {
             const isVideo = item.type === "video";
+            const key = getTranslationKey(item.alt);
+            const altText = key ? t(`gallery.items.${key}`) : item.alt;
+
             return (
               <Reveal
                 key={item.src}
@@ -249,13 +278,13 @@ export function Gallery() {
                       ? "h-72 sm:h-96 lg:h-[464px]"
                       : "h-56 w-full lg:h-[224px]"
                   }`}
-                  aria-label={`${item.alt || "Klinik Görseli"} — büyüüt`}
+                  aria-label={`${altText || "Clinic Media"} — zoom`}
                 >
                   {/* Real Case Badge */}
                   {item.isRealCase && (
                     <span className="absolute top-3 left-3 z-10 flex items-center gap-1.5 rounded-full bg-accent/95 px-2.5 py-1 text-[10px] font-bold text-primary shadow-md border border-primary/10">
                       <span className="size-1.5 rounded-full bg-primary animate-pulse" />
-                      ✓ Klinik Ekibimizin Uygulaması
+                      {t("gallery.badgeRealCase")}
                     </span>
                   )}
 
@@ -276,7 +305,7 @@ export function Gallery() {
                       </span>
                       {item.alt && (
                         <span className="absolute bottom-4 left-4 rounded-lg bg-background/80 px-3 py-1.5 text-xs font-semibold text-primary backdrop-blur">
-                          {item.alt}
+                          {altText}
                         </span>
                       )}
                     </>
@@ -284,7 +313,7 @@ export function Gallery() {
                     <>
                       <img
                         src={item.src}
-                        alt={item.alt}
+                        alt={altText}
                         loading="lazy"
                         className={cn(
                           "h-full w-full transition-transform duration-500 group-hover:scale-105",
@@ -302,83 +331,89 @@ export function Gallery() {
       </div>
 
       <AnimatePresence>
-        {index !== null && filteredItems[index] && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-center justify-center bg-primary/95 p-4"
-            onClick={() => setIndex(null)}
-            role="dialog"
-            aria-modal="true"
-          >
-            <button
-              className="absolute top-5 right-5 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground cursor-pointer"
-              aria-label="Kapat"
+        {index !== null && filteredItems[index] && (() => {
+          const currentItem = filteredItems[index];
+          const currentKey = currentItem ? getTranslationKey(currentItem.alt) : "";
+          const currentAlt = currentKey ? t(`gallery.items.${currentKey}`) : currentItem?.alt;
+
+          return (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[60] flex items-center justify-center bg-primary/95 p-4"
               onClick={() => setIndex(null)}
+              role="dialog"
+              aria-modal="true"
             >
-              <X className="size-5" />
-            </button>
-            <button
-              className="absolute left-3 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground sm:left-8 cursor-pointer"
-              aria-label="Önceki"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIndex((i) => ((i ?? 0) - 1 + filteredItems.length) % filteredItems.length);
-              }}
-            >
-              <ChevronLeft className="size-5" />
-            </button>
+              <button
+                className="absolute top-5 right-5 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground cursor-pointer"
+                aria-label={t("gallery.btnClose")}
+                onClick={() => setIndex(null)}
+              >
+                <X className="size-5" />
+              </button>
+              <button
+                className="absolute left-3 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground sm:left-8 cursor-pointer"
+                aria-label={t("gallery.btnPrev")}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIndex((i) => ((i ?? 0) - 1 + filteredItems.length) % filteredItems.length);
+                }}
+              >
+                <ChevronLeft className="size-5" />
+              </button>
 
-            {filteredItems[index].type === "video" ? (
-              <motion.video
-                key={index}
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                src={filteredItems[index].src}
-                controls
-                autoPlay
+              {currentItem.type === "video" ? (
+                <motion.video
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  src={currentItem.src}
+                  controls
+                  autoPlay
+                  onClick={(e) => e.stopPropagation()}
+                  className="max-h-[80vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl"
+                />
+              ) : (
+                <motion.img
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  src={currentItem.src}
+                  alt={currentAlt}
+                  onClick={(e) => e.stopPropagation()}
+                  className="max-h-[80vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl"
+                />
+              )}
+
+              <div
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 max-w-[90vw] text-center"
                 onClick={(e) => e.stopPropagation()}
-                className="max-h-[80vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl"
-              />
-            ) : (
-              <motion.img
-                key={index}
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                src={filteredItems[index].src}
-                alt={filteredItems[index].alt}
-                onClick={(e) => e.stopPropagation()}
-                className="max-h-[80vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl"
-              />
-            )}
+              >
+                <p className="font-display text-sm font-semibold text-white bg-black/75 px-5 py-2.5 rounded-full backdrop-blur-md shadow-lg border border-white/10 flex flex-wrap items-center justify-center gap-2">
+                  <span>{currentAlt}</span>
+                  {currentItem.isRealCase && (
+                    <span className="inline-flex items-center gap-1 rounded bg-accent/25 px-2 py-0.5 text-[10px] font-bold text-accent border border-accent/20">
+                      {t("gallery.badgeRealCase")}
+                    </span>
+                  )}
+                </p>
+              </div>
 
-            <div
-              className="absolute bottom-6 left-1/2 -translate-x-1/2 max-w-[90vw] text-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <p className="font-display text-sm font-semibold text-white bg-black/75 px-5 py-2.5 rounded-full backdrop-blur-md shadow-lg border border-white/10 flex flex-wrap items-center justify-center gap-2">
-                <span>{filteredItems[index].alt}</span>
-                {filteredItems[index].isRealCase && (
-                  <span className="inline-flex items-center gap-1 rounded bg-accent/25 px-2 py-0.5 text-[10px] font-bold text-accent border border-accent/20">
-                    ✓ Klinik Ekibimizin Uygulaması
-                  </span>
-                )}
-              </p>
-            </div>
-
-            <button
-              className="absolute right-3 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground sm:right-8 cursor-pointer"
-              aria-label="Sonraki"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIndex((i) => ((i ?? 0) + 1) % filteredItems.length);
-              }}
-            >
-              <ChevronRight className="size-5" />
-            </button>
-          </motion.div>
-        )}
+              <button
+                className="absolute right-3 grid size-11 place-items-center rounded-full bg-background/10 text-primary-foreground sm:right-8 cursor-pointer"
+                aria-label={t("gallery.btnNext")}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIndex((i) => ((i ?? 0) + 1) % filteredItems.length);
+                }}
+              >
+                <ChevronRight className="size-5" />
+              </button>
+            </motion.div>
+          );
+        })()}
       </AnimatePresence>
     </section>
   );

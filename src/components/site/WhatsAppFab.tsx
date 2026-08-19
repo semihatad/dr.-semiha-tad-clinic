@@ -1,11 +1,15 @@
 import { motion } from "motion/react";
 import { Instagram, MapPin } from "lucide-react";
 import { CLINIC } from "@/lib/clinic";
+import { useLanguage } from "@/components/site/LanguageContext";
 
 const base =
   "grid size-14 place-items-center rounded-full shadow-xl shadow-primary/20 transition-transform hover:scale-105";
 
 export function WhatsAppFab() {
+  const { t } = useLanguage();
+  const whatsappUrl = "https://wa.me/905333001780?text=" + encodeURIComponent(t("whatsappMsg"));
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.6 }}
@@ -14,10 +18,10 @@ export function WhatsAppFab() {
       className="fixed right-5 bottom-5 z-40 flex flex-col items-center gap-3"
     >
       <a
-        href={CLINIC.whatsapp}
+        href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="WhatsApp ile randevu al"
+        aria-label={t("hero.btnWhatsapp")}
         className={`${base} bg-whatsapp text-whatsapp-foreground`}
       >
         <svg className="size-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -29,7 +33,7 @@ export function WhatsAppFab() {
         href={CLINIC.instagram}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Instagram sayfamız"
+        aria-label="Instagram"
         className={`${base} bg-[linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)] text-white`}
       >
         <Instagram className="size-6" />
@@ -39,7 +43,7 @@ export function WhatsAppFab() {
         href={CLINIC.googleBusiness}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Google Haritalar'da konumumuz"
+        aria-label={t("contact.mapsLinkText")}
         className={`${base} bg-primary text-primary-foreground`}
       >
         <MapPin className="size-6" />

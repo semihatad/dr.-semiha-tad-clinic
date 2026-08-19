@@ -4,17 +4,43 @@ import { Reveal, SectionHeading } from "./Section";
 import { useOpenStatus } from "./hooks";
 import { cn } from "@/lib/utils";
 import logo from "@/assets/logo.png";
+import { useLanguage } from "@/components/site/LanguageContext";
+
+const getNavLabel = (id: string, t: any) => {
+  switch (id) {
+    case "hakkimizda":
+      return t("nav.about");
+    case "basinda-biz":
+      return t("nav.basindaBiz");
+    case "hizmetler":
+      return t("nav.services");
+    case "ekibimiz":
+      return t("nav.team");
+    case "galeri":
+      return t("nav.gallery");
+    case "yorumlar":
+      return t("nav.testimonials");
+    case "sss":
+      return t("nav.faq");
+    case "iletisim":
+      return t("nav.contact");
+    default:
+      return id;
+  }
+};
 
 export function Contact() {
+  const { language, t } = useLanguage();
+  const whatsappUrl = "https://wa.me/905333001780?text=" + encodeURIComponent(t("whatsappMsg"));
   const status = useOpenStatus();
 
   return (
     <section id="iletisim" className="scroll-mt-24 border-t border-border py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
-          eyebrow="İletişim"
-          title="Kliniğimize ulaşın"
-          description="Cebeci'deki kliniğimizde her gün sizi ağırlıyoruz."
+          eyebrow={t("contact.eyebrow")}
+          title={t("contact.title")}
+          description={t("contact.description")}
         />
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
@@ -29,10 +55,12 @@ export function Contact() {
                 <MapPin className="size-5" />
               </span>
               <div className="min-w-0">
-                <h3 className="font-display text-sm font-semibold text-primary">Adres</h3>
+                <h3 className="font-display text-sm font-semibold text-primary">
+                  {t("contact.addressTitle")}
+                </h3>
                 <p className="mt-1 text-sm text-muted-foreground">{CLINIC.address}</p>
                 <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-accent hover:text-accent-hover">
-                  Google Haritalar'da Göster →
+                  {t("contact.mapsLinkText")}
                 </span>
               </div>
             </a>
@@ -42,7 +70,9 @@ export function Contact() {
                 <Phone className="size-5" />
               </span>
               <div className="min-w-0">
-                <h3 className="font-display text-sm font-semibold text-primary">Telefon</h3>
+                <h3 className="font-display text-sm font-semibold text-primary">
+                  {t("contact.phoneTitle")}
+                </h3>
                 <a
                   href={CLINIC.phoneHref}
                   className="mt-1 block text-sm text-muted-foreground hover:text-primary"
@@ -78,7 +108,9 @@ export function Contact() {
                 <Mail className="size-5" />
               </span>
               <div className="min-w-0">
-                <h3 className="font-display text-sm font-semibold text-primary">E-Posta</h3>
+                <h3 className="font-display text-sm font-semibold text-primary">
+                  {t("contact.emailTitle")}
+                </h3>
                 <p className="mt-1 text-sm text-muted-foreground">{CLINIC.email}</p>
               </div>
             </a>
@@ -89,9 +121,9 @@ export function Contact() {
               </span>
               <div className="min-w-0">
                 <h3 className="font-display text-sm font-semibold text-primary">
-                  Çalışma Saatleri
+                  {t("contact.hoursTitle")}
                 </h3>
-                <p className="mt-1 text-sm text-muted-foreground">{CLINIC.hours}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{t("hero.openHours")}</p>
                 {status && (
                   <span
                     className={cn(
@@ -105,27 +137,27 @@ export function Contact() {
                         status.open ? "bg-accent" : "bg-muted-foreground",
                       )}
                     />
-                    {status.label}
+                    {status.open ? t("hero.statusOpen") : t("hero.statusClosed")}
                   </span>
                 )}
               </div>
             </div>
 
             <a
-              href={CLINIC.whatsapp}
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-4 text-sm font-semibold text-primary-foreground transition-colors hover:bg-navy-700"
             >
               <MessageCircle className="size-4" />
-              WhatsApp'tan Randevu Al
+              {t("hero.btnWhatsapp")}
             </a>
           </Reveal>
 
           <Reveal delay={0.1}>
             <div className="h-full min-h-80 overflow-hidden rounded-2xl border border-border">
               <iframe
-                title="Klinik konumu — Google Haritalar"
+                title={t("contact.mapsLinkText")}
                 src={CLINIC.mapsEmbed}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
@@ -154,7 +186,9 @@ export function Contact() {
               </span>
             </div>
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
-              Çankaya / Ankara'da modern ve hijyenik diş hekimliği hizmetleri.
+              {language === "tr"
+                ? "Çankaya / Ankara'da modern ve hijyenik diş hekimliği hizmetleri."
+                : "Modern and hygienic dental services in Cankaya / Ankara."}
             </p>
             <div className="mt-5 flex items-center gap-3">
               <a
@@ -181,7 +215,9 @@ export function Contact() {
           </div>
 
           <div>
-            <h3 className="font-display text-sm font-semibold text-primary">Bölümler</h3>
+            <h3 className="font-display text-sm font-semibold text-primary">
+              {language === "tr" ? "Bölümler" : "Sections"}
+            </h3>
             <ul className="mt-4 space-y-2">
               {NAV_ITEMS.map((n) => (
                 <li key={n.id}>
@@ -189,7 +225,7 @@ export function Contact() {
                     href={`#${n.id}`}
                     className="text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
-                    {n.label}
+                    {getNavLabel(n.id, t)}
                   </a>
                 </li>
               ))}
@@ -197,7 +233,9 @@ export function Contact() {
           </div>
 
           <div>
-            <h3 className="font-display text-sm font-semibold text-primary">İletişim</h3>
+            <h3 className="font-display text-sm font-semibold text-primary">
+              {t("contact.eyebrow")}
+            </h3>
             <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
               <li>{CLINIC.address}</li>
               <li>
@@ -225,14 +263,14 @@ export function Contact() {
                   {CLINIC.email}
                 </a>
               </li>
-              <li>{CLINIC.hours}</li>
+              <li>{t("hero.openHours")}</li>
             </ul>
           </div>
         </div>
 
         <div className="mx-auto mt-10 max-w-6xl border-t border-border px-4 py-6 sm:px-6">
           <p className="text-center text-xs text-muted-foreground">
-            © {new Date().getFullYear()} {CLINIC.name}. Tüm hakları saklıdır.
+            © {new Date().getFullYear()} {CLINIC.name}. {t("contact.copyright")}
           </p>
         </div>
       </footer>
