@@ -94,8 +94,8 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          {/* Language Switcher (Desktop) */}
-          <div className="hidden lg:flex items-center border border-border rounded-full p-0.5 bg-navy-50/50 mr-1">
+          {/* Language Switcher */}
+          <div className="flex items-center border border-border rounded-full p-0.5 bg-navy-50/50 mr-1">
             <button
               onClick={() => setLanguage("tr")}
               className={cn(
@@ -167,38 +167,6 @@ export function Navbar() {
                 {t("nav.whatsapp")}
               </a>
 
-              {/* Language Switcher (Mobile) */}
-              <div className="mt-4 flex items-center justify-between border-t border-border pt-4 px-3">
-                <span className="text-xs font-semibold text-muted-foreground">
-                  {language === "tr" ? "Dil / Language" : "Language / Dil"}
-                </span>
-                <div className="flex items-center border border-border rounded-full p-0.5 bg-navy-50/50">
-                  <button
-                    onClick={() => {
-                      setLanguage("tr");
-                      setOpen(false);
-                    }}
-                    className={cn(
-                      "px-3 py-1 text-xs font-bold rounded-full transition-all cursor-pointer",
-                      language === "tr" ? "bg-primary text-primary-foreground shadow" : "text-muted-foreground hover:text-primary"
-                    )}
-                  >
-                    TR
-                  </button>
-                  <button
-                    onClick={() => {
-                      setLanguage("en");
-                      setOpen(false);
-                    }}
-                    className={cn(
-                      "px-3 py-1 text-xs font-bold rounded-full transition-all cursor-pointer",
-                      language === "en" ? "bg-primary text-primary-foreground shadow" : "text-muted-foreground hover:text-primary"
-                    )}
-                  >
-                    EN
-                  </button>
-                </div>
-              </div>
             </div>
           </motion.nav>
         )}
