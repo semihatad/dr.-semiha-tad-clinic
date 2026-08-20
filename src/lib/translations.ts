@@ -136,6 +136,7 @@ export const TRANSLATIONS = {
       items: {
         video1: "Klinik Tanıtım Videosu",
         video2: "Kliniğimizden Görüntüler",
+        video3: "Klinik Tedavi Süreci Videosu",
         clinic1: "Diş Tedavi Odası",
         clinic2: "Klinik Giriş ve Bekleme Alanı",
         clinic3: "Modern Diş Muayene Ünitesi",
@@ -384,6 +385,7 @@ export const TRANSLATIONS = {
       items: {
         video1: "Clinic Promotional Video",
         video2: "Glimpses from Our Clinic",
+        video3: "Clinical Treatment Process Video",
         clinic1: "Dental Treatment Room",
         clinic2: "Clinic Entrance & Waiting Area",
         clinic3: "Modern Dental Examination Unit",

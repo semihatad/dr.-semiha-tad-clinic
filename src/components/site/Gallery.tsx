@@ -28,6 +28,7 @@ const getTranslationKey = (alt: string) => {
     case "Grid Güçlendirmeli Total Protez Çalışması": return "prosthesisDentureTotal";
     case "Diş Laboratuvarında Zirkonyum Kron Hazırlığı": return "prosthesisCrownModelYellow";
     case "Çocuk Hasta Tedavi Süreci": return "pedodonticsTreatment";
+    case "Klinik Tedavi Süreci Videosu": return "video3";
     default: return "";
   }
 };
@@ -45,7 +46,7 @@ import prosthesisDentureMetal from "@/assets/cases/prosthesis-denture-metal.png"
 import prosthesisCrownModel from "@/assets/cases/prosthesis-crown-model.jpg";
 import prosthesisDentureTotal from "@/assets/cases/prosthesis-denture-total.jpg";
 import prosthesisCrownModelYellow from "@/assets/cases/prosthesis-crown-model-yellow.jpg";
-import pedodonticsTreatment from "@/assets/cases/pedodontics-treatment.png";
+// import pedodonticsTreatment from "@/assets/cases/pedodontics-treatment.png";
 
 const CATEGORIES = [
   { id: "all", label: "Tümü" },
@@ -73,6 +74,15 @@ const ITEMS = [
     category: "clinic" as const,
     isRealCase: false,
   },
+  /*
+  {
+    type: "video" as const,
+    src: "/Images/7AC32D9C-4393-4DE9-B157-634F61C2C75C.mp4", // Not: Web tarayıcılarında çalışması için .MOV dosyası H.264/AAC ile .mp4'e dönüştürülmelidir.
+    alt: "Klinik Tedavi Süreci Videosu",
+    category: "clinic" as const,
+    isRealCase: false,
+  },
+  */
   // Klinik Resimleri
   {
     type: "image" as const,
@@ -186,12 +196,13 @@ const ITEMS = [
   },
   // Çocuk Diş Hekimliği
   {
-    type: "image" as const,
-    src: pedodonticsTreatment,
+    type: "video" as const,
+    src: "/Images/videococuk.mp4",
     alt: "Çocuk Hasta Tedavi Süreci",
     category: "pedodontics" as const,
     isRealCase: true,
     fit: "contain" as const,
+    muted: false,
   },
 ];
 
@@ -292,7 +303,7 @@ export function Gallery() {
                     <>
                       <video
                         src={item.src}
-                        muted
+                        muted={item.muted !== false}
                         loop
                         playsInline
                         autoPlay
