@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -202,7 +202,7 @@ const ITEMS = [
     category: "pedodontics" as const,
     isRealCase: true,
     fit: "contain" as const,
-    muted: false,
+    hasAudio: true,
   },
 ];
 
@@ -210,6 +210,7 @@ export function Gallery() {
   const { t } = useLanguage();
   const [index, setIndex] = useState<number | null>(null);
   const [selectedTab, setSelectedTab] = useState<string>("all");
+  const videoRefs = useRef<Map<string, HTMLVideoElement>>(new Map());
 
   const filteredItems =
     selectedTab === "all"
@@ -217,7 +218,17 @@ export function Gallery() {
       : ITEMS.filter((item) => item.category === selectedTab);
 
   useEffect(() => {
-    if (index === null) return;
+    if (index === null) {
+      // Lightbox kapandığında tüm thumbnail videolarını yeniden başlat
+      videoRefs.current.forEach((vid) => {
+        vid.play().catch(() => {});
+      });
+      return;
+    }
+    // Lightbox açıldığında tüm thumbnail videolarını durdur (ses çakışmasın)
+    videoRefs.current.forEach((vid) => {
+      vid.pause();
+    });
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIndex(null);
       if (e.key === "ArrowRight") setIndex((i) => ((i ?? 0) + 1) % filteredItems.length);
@@ -302,8 +313,12 @@ export function Gallery() {
                   {isVideo ? (
                     <>
                       <video
+                        ref={(el) => {
+                          if (el) videoRefs.current.set(item.src, el);
+                          else videoRefs.current.delete(item.src);
+                        }}
                         src={item.src}
-                        muted={item.muted !== false}
+                        muted
                         loop
                         playsInline
                         autoPlay
@@ -383,6 +398,7 @@ export function Gallery() {
                   src={currentItem.src}
                   controls
                   autoPlay
+                  muted={!currentItem.hasAudio}
                   onClick={(e) => e.stopPropagation()}
                   className="max-h-[80vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl"
                 />
