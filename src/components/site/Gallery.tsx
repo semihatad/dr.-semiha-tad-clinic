@@ -29,6 +29,7 @@ const getTranslationKey = (alt: string) => {
     case "Diş Laboratuvarında Zirkonyum Kron Hazırlığı": return "prosthesisCrownModelYellow";
     case "Çocuk Hasta Tedavi Süreci": return "pedodonticsTreatment";
     case "Klinik Tedavi Süreci Videosu": return "video3";
+    case "Hekim Uygulaması Videosu": return "video4";
     default: return "";
   }
 };
@@ -66,6 +67,7 @@ const ITEMS = [
     alt: "Klinik Tanıtım Videosu",
     category: "clinic" as const,
     isRealCase: false,
+    hasAudio: true,
   },
   {
     type: "video" as const,
@@ -73,6 +75,7 @@ const ITEMS = [
     alt: "Kliniğimizden Görüntüler",
     category: "clinic" as const,
     isRealCase: false,
+    hasAudio: true,
   },
   /*
   {
@@ -202,6 +205,15 @@ const ITEMS = [
     category: "pedodontics" as const,
     isRealCase: true,
     fit: "contain" as const,
+    hasAudio: true,
+  },
+  // Hekim Uygulaması
+  {
+    type: "video" as const,
+    src: "/Images/WhatsApp Video 2026-08-20 at 22.37.38.mp4",
+    alt: "Hekim Uygulaması Videosu",
+    category: "clinic" as const,
+    isRealCase: true,
     hasAudio: true,
   },
 ];
@@ -398,7 +410,6 @@ export function Gallery() {
                   src={currentItem.src}
                   controls
                   autoPlay
-                  muted={!currentItem.hasAudio}
                   onClick={(e) => e.stopPropagation()}
                   className="max-h-[80vh] max-w-[92vw] rounded-2xl object-contain shadow-2xl"
                 />
